@@ -1,65 +1,63 @@
-# sandbox-app-template
+# PHIRKI — Precision. Power. Control.
 
-Monorepo: Bun workspaces + Turborepo.
+**PHIRKI Premium Foam Sprayer by Trumart** — A dark luxury e-commerce experience driven by scroll-based frame animation.
 
-## Project Structure
+## 🎨 Brand Identity
+
+- **Aesthetic**: Dark luxury — Apple meets Rolls Royce meets Dyson
+- **Color Palette**:
+  - Background: `#050810` (near-black with blue undertone)
+  - Gold Accent: `#C9A84C` (warm gold, matches packaging)
+  - Typography: "Cormorant Garamond" (display) + "Inter" (body)
+- **Motion**: Scroll-driven cinematic experience with GSAP ScrollTrigger
+
+## 🚀 Experience Highlights
+
+- **Hero Section** — Logo drop with scroll-to-reveal prompt
+- **Frame Scrubbing** — 281-frame cinematic playback synchronized to scroll position
+- **Product Reveal** — Box opening animation as you scroll, with product emergence
+- **Detail Mastery** — Close-up feature callouts with smooth parallax
+- **Power & Precision** — Animated spec counters and highlights
+- **The Arsenal** — Accessories showcase grid
+- **Final CTA** — "Experience Control" conversion experience
+
+## 📦 Project Structure
 
 ```
-.env                         Secrets (gitignored), loaded via Vite's loadEnv
 packages/
-  web/                       Unified server (API + web frontend via Vite)
-    vite.config.ts           Vite 7 config — loads .env, sets port, registers plugins
-    index.html               Frontend HTML entry
-    vite/plugins/
-      hono-dev-plugin.ts     Intercepts /api/* in dev, forwards to Hono via SSR
-      runable-analytics-plugin.ts
+  web/                       Web application (Vite + Hono + React)
     src/
-      api/
-        index.ts             Hono routes (.basePath('api')) + AppType export
-        database/
-          index.ts           Database client (Turso/LibSQL)
-          schema.ts          Drizzle schema
       web/
-        main.tsx             App entry
-        app.tsx              Root component + Wouter routing
         pages/               Page components
         components/          UI components
-        hooks/
-          use-desktop.ts     Desktop detection
-        lib/
-          api.ts             Typed API client (hono client)
-          desktop.ts         Electron API types
-          utils.ts           Shared utilities
-        styles.css           Tailwind CSS entry
-  mobile/                    Expo + React Native + expo-router
-    app/                     File-based routing
-    lib/
-      api.ts                 Typed API client
-  desktop/                   Electron shell (loads web app from server)
-    electron/
-      main.ts                Main process + IPC handlers
-      preload.ts             contextBridge API
-    vite.config.ts           Vite config
+        lib/                 Utilities & API clients
+      api/                   Hono backend routes
+      server.ts              Server entry point
+  mobile/                    Expo React Native app
+  desktop/                   Electron desktop shell
 ```
 
-## Environment Variables
+## 🛠️ Tech Stack
 
-Secrets and credentials live in `.env` at the project root (gitignored). Vite's `loadEnv` loads them into `process.env` at dev/build time (configured in `packages/web/vite.config.ts`). In API code (Hono), use `process.env.YOUR_VAR`. In browser code, only `VITE_`-prefixed vars are exposed via `import.meta.env.VITE_YOUR_VAR`. Drizzle scripts use `bun --env-file=../../.env` to load env vars directly.
+- **Frontend**: React 19 + TypeScript + Vite
+- **Backend**: Hono (API routes)
+- **Database**: Turso/LibSQL + Drizzle ORM
+- **Animation**: GSAP + ScrollTrigger + Lenis (smooth scroll)
+- **Desktop**: Electron
+- **Mobile**: Expo/React Native
+- **Styling**: Tailwind CSS
 
-## Desktop UI
+## 📝 Development
 
-The desktop app has no separate renderer by default. It loads the web app from `packages/web`; desktop-specific UI should live in `packages/web/src/web/` and be gated with `useDesktop()` / `window.electronAPI`. Keep `packages/desktop` for Electron window setup, menus/tray/shortcuts, IPC handlers, native OS APIs, and packaging. Only add a separate desktop renderer when the product intentionally needs a different desktop-only UI architecture.
-
-## Servers
-
-Dev servers are started and managed automatically — no need to run them manually.
-
-## Database
-
+Install dependencies and start dev servers:
 ```sh
-cd packages/web
-bun run db:push        # Push schema to database
-bun run db:generate    # Generate migration files
-bun run db:migrate     # Run migrations
-bun run db:studio      # Open Drizzle Studio
+bun install
+cd packages/web && bun run dev
+```
+
+For database operations:
+```sh
+bun run db:push        # Push schema
+bun run db:generate    # Generate migrations
+bun run db:studio      # Drizzle Studio
 ```
