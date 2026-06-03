@@ -48,28 +48,10 @@ public/                      Static assets
 ## 🛠️ Tech Stack
 
 - **Frontend**: React 19 + TypeScript + Vite
-- **Backend**: Hono (API routes)
-- **Database**: Turso/LibSQL + Drizzle ORM
 - **Animation**: GSAP + ScrollTrigger + Lenis (smooth scroll)
 - **Styling**: Tailwind CSS
 
 ## 📝 Development
 
 Install dependencies and start dev:
-```sh
-bun install
-bun run dev
-```
 
-For database operations:
-```sh
-bun run db:push        # Push schema
-bun run db:generate    # Generate migrations
-bun run db:studio      # Drizzle Studio
-```
-
-Build for production:
-```sh
-bun run build
-bun run preview
-```
