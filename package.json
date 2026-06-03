@@ -1,44 +1,60 @@
 {
-  "name": "sandbox-app-template",
+  "name": "phirki",
   "private": true,
+  "type": "module",
   "packageManager": "bun@1.3.5",
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
-    "dev": "npm run -w packages/web dev",
-    "dev:desktop": "npm run -w packages/desktop dev",
-    "dev:mobile": "npm run -w packages/mobile dev",
-    "start": "pm2 delete web-app 2>/dev/null || true; pm2 start ecosystem.config.cjs --update-env",
-    "build": "turbo build",
-    "build:web": "npm run -w packages/web build",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "bun run build && vite preview",
+    "start": "bun src/server.ts",
     "lint": "oxlint . --deny-warnings --no-error-on-unmatched-pattern",
     "lint:fix": "oxlint . --fix --deny-warnings --no-error-on-unmatched-pattern",
-    "typecheck": "turbo typecheck",
-    "db:generate": "turbo db:generate",
-    "db:migrate": "turbo db:migrate",
-    "db:push": "turbo db:push",
-    "db:studio": "turbo db:studio",
-    "kill:port": "lsof -t -i :${PORT:-4200} | xargs kill -9"
-  },
-  "devDependencies": {
-    "@tursodatabase/api": "^1.9.2",
-    "@types/bun": "latest",
-    "oxlint": "^1.66.0",
-    "turbo": "^2"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
+    "typecheck": "tsc --noEmit",
+    "db:generate": "bun --env-file=.env drizzle-kit generate",
+    "db:migrate": "bun --env-file=.env drizzle-kit migrate",
+    "db:push": "bun --env-file=.env drizzle-kit push",
+    "db:studio": "bun --env-file=.env drizzle-kit studio"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1023.0",
     "@gsap/react": "^2.1.2",
     "@libsql/client": "^0.17.2",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@runablehq/website-runtime": "^0.10.0",
+    "@tanstack/react-query": "^5.100.6",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "cloudflare": "^5.2.0",
+    "drizzle-orm": "^0.45.2",
     "gsap": "^3.15.0",
+    "hono": "^4.12.10",
+    "lucide-react": "^0.577.0",
     "pm2": "^7.0.1",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "react-hook-form": "^7.71.2",
+    "react-icons": "^5.6.0",
+    "tailwind-merge": "^3.5.0",
+    "wouter": "^3.9.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "@tursodatabase/api": "^1.9.2",
+    "@types/bun": "latest",
+    "@types/jsdom": "^28.0.1",
+    "@types/node": "^25.3.5",
+    "@types/react": "19.1.17",
+    "@types/react-dom": "19.1.11",
+    "@vitejs/plugin-react": "5.1.4",
+    "drizzle-kit": "^0.31.10",
+    "jsdom": "^29.1.0",
+    "oxlint": "^1.66.0",
+    "tailwindcss": "^4.2.1",
+    "tw-animate-css": "^1.4.0",
+    "typescript": "^5.8.3",
+    "vite": "^7.3.1"
   },
   "overrides": {
     "react": "19.1.0",

@@ -24,17 +24,25 @@
 ## 📦 Project Structure
 
 ```
-packages/
-  web/                       Web application (Vite + Hono + React)
-    src/
-      web/
-        pages/               Page components
-        components/          UI components
-        lib/                 Utilities & API clients
-      api/                   Hono backend routes
-      server.ts              Server entry point
-  mobile/                    Expo React Native app
-  desktop/                   Electron desktop shell
+src/
+  web/                       Web components & pages
+    pages/                   Page components
+    components/              UI components & layouts
+    lib/                     API clients & utilities
+    styles.css               Tailwind CSS entry
+    main.tsx                 App entry
+    app.tsx                  Root component & routing
+  api/                       Hono backend
+    index.ts                 API routes
+    database/
+      schema.ts              Drizzle schema
+      index.ts               Database client
+  server.ts                  Server entry point
+index.html                   HTML template
+vite.config.ts               Vite configuration
+drizzle.config.ts            Database configuration
+public/                      Static assets
+  frames/                    Animation frame images
 ```
 
 ## 🛠️ Tech Stack
@@ -43,16 +51,14 @@ packages/
 - **Backend**: Hono (API routes)
 - **Database**: Turso/LibSQL + Drizzle ORM
 - **Animation**: GSAP + ScrollTrigger + Lenis (smooth scroll)
-- **Desktop**: Electron
-- **Mobile**: Expo/React Native
 - **Styling**: Tailwind CSS
 
 ## 📝 Development
 
-Install dependencies and start dev servers:
+Install dependencies and start dev:
 ```sh
 bun install
-cd packages/web && bun run dev
+bun run dev
 ```
 
 For database operations:
@@ -60,4 +66,10 @@ For database operations:
 bun run db:push        # Push schema
 bun run db:generate    # Generate migrations
 bun run db:studio      # Drizzle Studio
+```
+
+Build for production:
+```sh
+bun run build
+bun run preview
 ```
