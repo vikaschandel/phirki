@@ -1,0 +1,84 @@
+# Dependencies
+node_modules/
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# Build outputs
+dist/
+dist-electron/
+build/
+.next/
+out/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+.vim/
+
+# Turbo and build cache
+.turbo/
+.cache/
+turbo.json.local
+
+# Testing
+coverage/
+.nyc_output/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids/
+*.seed
+*.pid.lock
+
+# Electron
+dist-electron/
+
+# Mobile
+packages/mobile/.expo/
+packages/mobile/.expo-shared/
+packages/mobile/build/
+packages/mobile/npm-debug.*
+packages/mobile/yarn-error.*
+
+# Web
+packages/web/.env*.local
+packages/web/dist/
+
+# Desktop
+packages/desktop/dist-electron/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Misc
+*.bak
+*.tmp
+.env.example.local
